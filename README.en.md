@@ -1,5 +1,7 @@
 # tw-patent-mcp
 
+<!-- mcp-name: io.github.aa0101181514/tw-patent-mcp -->
+
 [繁體中文](README.md)
 
 An MCP server for patent search, built on the Taiwan Intellectual Property Office Global Patent Search System (GPSS) API and the European Patent Office Open Patent Services (EPO OPS).

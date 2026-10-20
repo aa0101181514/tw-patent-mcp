@@ -1,5 +1,7 @@
 # tw-patent-mcp
 
+<!-- mcp-name: io.github.aa0101181514/tw-patent-mcp -->
+
 [English](README.en.md)
 
 專利檢索 MCP 伺服器，串接經濟部智慧財產局全球專利檢索系統（GPSS）API 與歐洲專利局 Open Patent Services（EPO OPS）。

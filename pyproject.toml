@@ -1,6 +1,6 @@
 [project]
 name = "tw-patent-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP server for patent search via Taiwan IPO GPSS and EPO Open Patent Services: bibliographic search across 23 databases, INPADOC legal status, patent families, full text, and original publication PDFs. Bring your own API keys."
 readme = "README.md"
 license = { text = "Elastic-2.0" }

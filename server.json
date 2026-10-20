@@ -1,0 +1,43 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.aa0101181514/tw-patent-mcp",
+  "title": "Taiwan Patent MCP",
+  "description": "Patent search via Taiwan IPO GPSS and EPO OPS: legal status, families, full text, PDFs",
+  "version": "0.1.1",
+  "websiteUrl": "https://dr-legal.com.tw",
+  "repository": {
+    "url": "https://github.com/aa0101181514/tw-patent-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "tw-patent-mcp",
+      "version": "0.1.1",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "GPSS_USER_CODE",
+          "description": "Taiwan IPO GPSS API verification code",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "EPO_OPS_KEY",
+          "description": "EPO Open Patent Services consumer key",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "EPO_OPS_SECRET",
+          "description": "EPO Open Patent Services consumer secret",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
