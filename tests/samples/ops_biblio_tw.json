@@ -1,0 +1,763 @@
+{
+ "ops:world-patent-data": {
+  "@xmlns": {
+   "ops": "http://ops.epo.org",
+   "$": "http://www.epo.org/exchange",
+   "xlink": "http://www.w3.org/1999/xlink"
+  },
+  "exchange-documents": {
+   "exchange-document": {
+    "@system": "ops.epo.org",
+    "@family-id": "48288528",
+    "@country": "TW",
+    "@doc-number": "201644272",
+    "@kind": "A",
+    "bibliographic-data": {
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "TW"
+        },
+        "doc-number": {
+         "$": "201644272"
+        },
+        "kind": {
+         "$": "A"
+        },
+        "date": {
+         "$": "20161216"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "TW201644272"
+        },
+        "date": {
+         "$": "20161216"
+        }
+       }
+      ]
+     },
+     "classifications-ipcr": {
+      "classification-ipcr": [
+       {
+        "@sequence": "1",
+        "text": {
+         "$": "H04N  19/    00            A I"
+        }
+       },
+       {
+        "@sequence": "2",
+        "text": {
+         "$": "H04N  19/    50            A I"
+        }
+       },
+       {
+        "@sequence": "3",
+        "text": {
+         "$": "H04N  19/   513            A I"
+        }
+       },
+       {
+        "@sequence": "4",
+        "text": {
+         "$": "H04N  19/    94            A I"
+        }
+       }
+      ]
+     },
+     "patent-classifications": {
+      "patent-classification": [
+       {
+        "@sequence": "1",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "105"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "2",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "109"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "3",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "109"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "EP"
+        }
+       },
+       {
+        "@sequence": "4",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "124"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "5",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "124"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "EP"
+        }
+       },
+       {
+        "@sequence": "6",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "126"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "7",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "129"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "8",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "159"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "9",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "159"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "EP"
+        }
+       },
+       {
+        "@sequence": "10",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "176"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "KR"
+        }
+       },
+       {
+        "@sequence": "11",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "176"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "12",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "176"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "EP"
+        }
+       },
+       {
+        "@sequence": "13",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "46"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "14",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "463"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "15",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "463"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "EP"
+        }
+       },
+       {
+        "@sequence": "16",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "51"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "KR"
+        }
+       },
+       {
+        "@sequence": "17",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "52"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "US"
+        }
+       },
+       {
+        "@sequence": "18",
+        "classification-scheme": {
+         "@office": "EP",
+         "@scheme": "CPCI"
+        },
+        "section": {
+         "$": "H"
+        },
+        "class": {
+         "$": "04"
+        },
+        "subclass": {
+         "$": "N"
+        },
+        "main-group": {
+         "$": "19"
+        },
+        "subgroup": {
+         "$": "52"
+        },
+        "classification-value": {
+         "$": "I"
+        },
+        "generating-office": {
+         "$": "EP"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "475494091",
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "TW"
+        },
+        "doc-number": {
+         "$": "105131793"
+        },
+        "kind": {
+         "$": "A"
+        },
+        "date": {
+         "$": "20121107"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "TW20160131793"
+        },
+        "date": {
+         "$": "20121107"
+        }
+       },
+       {
+        "@document-id-type": "original",
+        "doc-number": {
+         "$": "105131793"
+        }
+       }
+      ]
+     },
+     "priority-claims": {
+      "priority-claim": {
+       "@sequence": "1",
+       "@kind": "national",
+       "document-id": [
+        {
+         "@document-id-type": "docdb",
+         "country": {
+          "$": "KR"
+         },
+         "doc-number": {
+          "$": "20110115218"
+         },
+         "kind": {
+          "$": "A"
+         },
+         "date": {
+          "$": "20111107"
+         }
+        },
+        {
+         "@document-id-type": "epodoc",
+         "doc-number": {
+          "$": "KR20110115218"
+         },
+         "date": {
+          "$": "20111107"
+         }
+        },
+        {
+         "@document-id-type": "original",
+         "doc-number": {
+          "$": "20110115218"
+         }
+        },
+        {
+         "@document-id-type": "original",
+         "doc-number": {
+          "$": "10-2011-0115218"
+         }
+        }
+       ]
+      }
+     },
+     "parties": {
+      "applicants": {
+       "applicant": [
+        {
+         "@sequence": "1",
+         "@data-format": "epodoc",
+         "applicant-name": {
+          "name": {
+           "$": "INFOBRIDGE PTE LTD [SG]"
+          }
+         }
+        },
+        {
+         "@sequence": "1",
+         "@data-format": "original",
+         "applicant-name": {
+          "name": {
+           "$": "INFOBRIDGE PTE. LTD."
+          }
+         }
+        }
+       ]
+      },
+      "inventors": {
+       "inventor": [
+        {
+         "@sequence": "1",
+         "@data-format": "epodoc",
+         "inventor-name": {
+          "name": {
+           "$": "OH SOO-ME [KR]"
+          }
+         }
+        },
+        {
+         "@sequence": "2",
+         "@data-format": "epodoc",
+         "inventor-name": {
+          "name": {
+           "$": "YANG MOO-NOCK [SG]"
+          }
+         }
+        },
+        {
+         "@sequence": "3",
+         "@data-format": "epodoc",
+         "inventor-name": {
+          "name": {
+           "$": "OH SOO ME [KR]"
+          }
+         }
+        },
+        {
+         "@sequence": "4",
+         "@data-format": "epodoc",
+         "inventor-name": {
+          "name": {
+           "$": "YANG MOO NOCK [SG]"
+          }
+         }
+        },
+        {
+         "@sequence": "1",
+         "@data-format": "original",
+         "inventor-name": {
+          "name": {
+           "$": "OH, SOO-ME"
+          }
+         }
+        },
+        {
+         "@sequence": "2",
+         "@data-format": "original",
+         "inventor-name": {
+          "name": {
+           "$": "YANG, MOO-NOCK"
+          }
+         }
+        }
+       ]
+      }
+     },
+     "invention-title": {
+      "$": "An apparatus of encoding an image in an advanced motion vector prediction mode",
+      "@lang": "en"
+     }
+    },
+    "abstract": [
+     {
+      "@lang": "en",
+      "p": {
+       "$": "Provided is a method that extracts a differential motion vector and an amvp index from a bit stream, constructs an amvp candidate list using two available motion vector candidates if at least two of a left motion vector candidate, an above motion vector candidate and a temporal motion vector candidate are available, selects a motion vector predictor among the amvp candidate list using the amvp index, and generates a motion vector using the motion vector predictor and the differential motion vector. The temporal motion vector candidate is a motion vector of a temporal motion vector candidate block within a temporal motion vector candidate picture, the temporal motion vector candidate block is determined based on a position of the temporal motion vector candidate block. Accordingly, the coding efficiency of the motion information is improved by including various motion vector candidates. Also, the computational complexity of an encoder and a decoder is reduced maintaining improvement of coding efficiency by adaptively storing motion information of reference picture and adaptively generating a temporal motion vector candidate."
+      }
+     },
+     {
+      "@lang": "ol",
+      "p": {
+       "$": "[0001]    本發明關於一種提供了一種方法，此種方法從位元流提取差分運動向量與amvp索引；如果左運動向量候選、上運動向量候選以及時間運動向量候選中的至少兩個可用，則利用兩個可用的運動向量候選構造amvp候選列表；利用amvp索引從amvp候選列表中選擇運動向量預測器；以及利用運動向量預測器與差分運動向量產生運動向量。時間運動向量候選為時間運動向量候選畫面之內時間運動向量候選塊的運動向量，基於時間運動向量候選塊的位置確定時間運動向量候選塊。因此，透過包含各種運動向量候選改善了運動資訊的編碼效率。而且，透過自適應地儲存參考畫面的運動資訊並自適應地產生時間運動向量候選，減小了編碼器與解碼器的計算複雜性，維持了編碼效率的改善。"
+      }
+     }
+    ]
+   }
+  }
+ }
+}

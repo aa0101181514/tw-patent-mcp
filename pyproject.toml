@@ -1,6 +1,6 @@
 [project]
 name = "tw-patent-mcp"
-version = "0.1.1"
+version = "0.2.0"
 description = "MCP server for patent search via Taiwan IPO GPSS and EPO Open Patent Services: bibliographic search across 23 databases, INPADOC legal status, patent families, full text, and original publication PDFs. Bring your own API keys."
 readme = "README.md"
 license = { text = "Elastic-2.0" }
@@ -43,7 +43,7 @@ build-backend = "hatchling.build"
 packages = ["tw_patent_mcp"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/tw_patent_mcp", "/tests", "/README.md", "/README.en.md", "/LICENSE", "/.env.example"]
+include = ["/tw_patent_mcp", "/tests", "/README.md", "/README.en.md", "/CHANGELOG.md", "/LICENSE", "/.env.example"]
 
 [dependency-groups]
 dev = [

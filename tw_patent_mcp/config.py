@@ -59,3 +59,9 @@ def download_dir() -> Path:
 
 def gpss_lock_file() -> Path:
     return home_dir() / "gpss_lock"
+
+
+def user_agent() -> str:
+    from . import __version__
+
+    return f"{APP_NAME}/{__version__} (+https://github.com/aa0101181514/tw-patent-mcp)"

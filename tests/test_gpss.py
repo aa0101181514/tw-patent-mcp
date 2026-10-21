@@ -114,3 +114,15 @@ def test_load_env_does_not_override(tmp_path, monkeypatch):
     assert config.load_env(env) == env
     assert config.get("GPSS_USER_CODE") == "fromenv"
     assert config.get("EPO_OPS_KEY") == "k"
+
+
+def test_parse_single_paragraph_abstract_is_not_split():
+    """官方 Json_format 範例：單段摘要的 p 是字串，不是陣列。"""
+    sample = {"gpss-API": {"status": "success", "total-rec": "1", "patent": {"patentcontent": {
+        "publication-reference": {"doc-number": "TW201644272A"},
+        "abstract": {"p": "單段摘要內容"},
+        "claims": {"claim": {"@num": "1", "claim-text": ["第一段", "第二段"]}},
+    }}}}
+    rec = gpss.parse_json(sample)["records"][0]
+    assert rec["abstract"] == "單段摘要內容"
+    assert rec["claims"] == [{"num": "1", "text": "第一段\n第二段"}]

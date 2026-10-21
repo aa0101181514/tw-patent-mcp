@@ -46,6 +46,45 @@ class OPSError(RuntimeError):
     pass
 
 
+# 每次回應的 X-Throttling-Control 形如
+#   busy (images=green:100, inpadoc=green:45, other=green:1000, retrieval=green:100, search=green:15)
+# 括號內是各服務目前每分鐘允許次數；沒看到標頭前一律保守等 6 秒。
+DEFAULT_INTERVAL = 6.0
+MIN_INTERVAL = {"search": 1.0, "inpadoc": 1.0, "images": 0.5, "retrieval": 0.5, "other": 0.5}
+QUOTA_HEADERS = ("x-throttling-control", "x-registeredquotaperweek-used", "x-individualquotaperhour-used")
+_THROTTLE_RE = re.compile(r"(\w+)=(\w+):(\d+)")
+
+
+def parse_throttle(header: str | None) -> dict[str, tuple[str, int]]:
+    """'busy (images=green:100, search=green:15)' → {'images': ('green', 100), 'search': ('green', 15)}。"""
+    if not header:
+        return {}
+    return {m.group(1): (m.group(2), int(m.group(3))) for m in _THROTTLE_RE.finditer(header)}
+
+
+def service_of(path: str) -> str:
+    """OPS 路徑對應到節流服務名。"""
+    if path.startswith("published-data/search"):
+        return "search"
+    if path.startswith("published-data/images"):
+        return "images"
+    if path.startswith(("legal/", "family/")):
+        return "inpadoc"
+    if path.startswith("published-data/"):
+        return "retrieval"
+    return "other"
+
+
+def interval_for(service: str, throttle: dict[str, tuple[str, int]]) -> float:
+    """依燈號算兩次呼叫的最小間隔（秒）。紅燈或額度 0 時等一分鐘。"""
+    if service not in throttle:
+        return DEFAULT_INTERVAL
+    color, per_minute = throttle[service]
+    if color == "red" or per_minute <= 0:
+        return 60.0
+    return max(60.0 / per_minute, MIN_INTERVAL.get(service, 1.0))
+
+
 class OPSClient:
     def __init__(self, key: str, secret: str, timeout: float = 60.0, dry_run: bool = False):
         if not key or not secret:
@@ -56,6 +95,7 @@ class OPSClient:
         self._token: str | None = None
         self._expires_at = 0.0
         self._last_call = 0.0
+        self._throttle: dict[str, tuple[str, int]] = {}
 
     # ---- auth ----
     def token(self) -> str:
@@ -76,19 +116,42 @@ class OPSClient:
         return self._token
 
     # ---- transport ----
-    def get(self, path: str, params: dict[str, Any] | None = None, accept: str = "application/json") -> Any:
-        url = f"{REST}/{path.lstrip('/')}"
-        if self.dry_run:
-            return {"dry_run": True, "url": url, "params": params or {}}
-        # 官方門檻每分鐘 10 次檢索；保守地讓兩次呼叫至少間隔 6 秒。
-        wait = 6.0 - (time.time() - self._last_call)
+    def _wait(self, service: str) -> None:
+        if not self._last_call:
+            return
+        wait = interval_for(service, self._throttle) - (time.time() - self._last_call)
         if wait > 0:
             time.sleep(wait)
-        headers = {"Authorization": f"Bearer {self.token()}", "Accept": accept}
+
+    def _request(self, url: str, params: dict[str, Any] | None, accept: str, service: str) -> httpx.Response:
+        """送出請求；token 被 OPS 判為失效時清掉重取一次。"""
+        self._wait(service)
+        headers = {"Accept": accept, "User-Agent": config.user_agent()}
         with httpx.Client(timeout=self.timeout) as client:
-            resp = client.get(url, params=params, headers=headers)
-        self._last_call = time.time()
-        quota = {k: v for k, v in resp.headers.items() if k.lower().startswith("x-")}
+            for attempt in (1, 2):
+                headers["Authorization"] = f"Bearer {self.token()}"
+                resp = client.get(url, params=params, headers=headers)
+                self._last_call = time.time()
+                if attempt == 1 and resp.status_code in (400, 401) and "invalid_access_token" in resp.text:
+                    self._token = None
+                    continue
+                break
+        throttle = parse_throttle(resp.headers.get("x-throttling-control"))
+        if throttle:
+            self._throttle = throttle
+        return resp
+
+    @staticmethod
+    def _quota(resp: httpx.Response) -> dict[str, str]:
+        return {k: v for k, v in resp.headers.items() if k.lower() in QUOTA_HEADERS}
+
+    def get(self, path: str, params: dict[str, Any] | None = None, accept: str = "application/json") -> Any:
+        path = path.lstrip("/")
+        url = f"{REST}/{path}"
+        if self.dry_run:
+            return {"dry_run": True, "url": url, "params": params or {}}
+        resp = self._request(url, params, accept, service_of(path))
+        quota = self._quota(resp)
         if resp.status_code == 404:
             return {"not_found": True, "url": str(resp.url), "quota": quota}
         if resp.status_code == 403:
@@ -159,13 +222,7 @@ class OPSClient:
         url = f"{REST}/{link}.pdf"
         if self.dry_run:
             return {"dry_run": True, "url": url, "params": {"Range": str(page)}}
-        wait = 6.0 - (time.time() - self._last_call)
-        if wait > 0:
-            time.sleep(wait)
-        headers = {"Authorization": f"Bearer {self.token()}", "Accept": "application/pdf"}
-        with httpx.Client(timeout=self.timeout) as client:
-            resp = client.get(url, params={"Range": str(page)}, headers=headers)
-        self._last_call = time.time()
+        resp = self._request(url, {"Range": str(page)}, "application/pdf", "images")
         if resp.status_code == 404:
             return {"not_found": True, "url": str(resp.url)}
         if resp.status_code != 200:
@@ -246,22 +303,247 @@ def parse_pages(spec: str, max_pages: int) -> list[int]:
 def extract_search_hits(payload: Any) -> list[dict]:
     """把 OPS 檢索 JSON 壓成 [{country, number, kind, date}]；非預期結構時回空。"""
     try:
-        wpd = payload["ops:world-patent-data"]
-        docs = wpd["ops:biblio-search"]["ops:search-result"]["ops:publication-reference"]
+        result = payload["ops:world-patent-data"]["ops:biblio-search"]["ops:search-result"]
     except (KeyError, TypeError):
         return []
-    if isinstance(docs, dict):
-        docs = [docs]
+    if "exchange-documents" in result:  # constituent=biblio／abstract 時整份書目都在
+        return [summarize_document(d) for d in _docs_in(result)]
     hits = []
-    for d in docs:
-        ids = d.get("document-id") or {}
-        if isinstance(ids, list):
-            ids = next((i for i in ids if i.get("@document-id-type") == "docdb"), ids[0])
+    for d in _as_list(result.get("ops:publication-reference")):
+        ids = _docdb(d.get("document-id"))
         hits.append({
-            "country": (ids.get("country") or {}).get("$"),
-            "number": (ids.get("doc-number") or {}).get("$"),
-            "kind": (ids.get("kind") or {}).get("$"),
-            "date": (ids.get("date") or {}).get("$"),
+            "country": _s(ids.get("country")),
+            "number": _s(ids.get("doc-number")),
+            "kind": _s(ids.get("kind")),
+            "date": _s(ids.get("date")),
             "family_id": d.get("@family-id"),
         })
     return hits
+
+
+def search_total(payload: Any) -> int | None:
+    try:
+        return int(payload["ops:world-patent-data"]["ops:biblio-search"]["@total-result-count"])
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+# ---------------- 壓平 OPS JSON ----------------
+# OPS 把 XML 轉成 JSON：文字在 "$"、屬性在 "@xxx"、單一元素是 dict、多個是 list。
+
+
+def _as_list(node: Any) -> list[dict]:
+    if node is None:
+        return []
+    if isinstance(node, dict):
+        return [node]
+    return [n for n in node if isinstance(n, dict)]
+
+
+def _s(node: Any) -> str | None:
+    if isinstance(node, dict):
+        v = node.get("$")
+        return str(v).strip() if v is not None else None
+    if isinstance(node, (str, int, float)):
+        return str(node).strip()
+    return None
+
+
+def _docdb(ids: Any) -> dict:
+    """document-id 可能有 docdb／epodoc／original 三種，優先 docdb。"""
+    items = _as_list(ids)
+    if not items:
+        return {}
+    return next((i for i in items if i.get("@document-id-type") == "docdb"), items[0])
+
+
+def _doc_number(ids: Any) -> str | None:
+    d = _docdb(ids)
+    if not d:
+        return None
+    cc, num, kind = _s(d.get("country")), _s(d.get("doc-number")), _s(d.get("kind"))
+    if cc and num:
+        return f"{cc}{num}{kind or ''}"
+    return num
+
+
+def _ref(ref: Any) -> dict:
+    """publication-reference／application-reference → {number, date}。"""
+    ids = (ref or {}).get("document-id")
+    out = {"number": _doc_number(ids), "date": _s(_docdb(ids).get("date"))}
+    return {k: v for k, v in out.items() if v}
+
+
+def _names(node: Any, key: str, name_key: str) -> list[str]:
+    """parties 內的 applicant／inventor：同一人有 epodoc 與 original 兩種格式，只取 epodoc。"""
+    items = _as_list((node or {}).get(key))
+    chosen = [i for i in items if i.get("@data-format") == "epodoc"] or items
+    out: list[str] = []
+    for i in chosen:
+        name = _s(((i.get(name_key) or {}).get("name")))
+        if name and name not in out:
+            out.append(name)
+    return out
+
+
+def _ipc(text: str | None) -> str | None:
+    """'B28B   1/    29            A I' → 'B28B 1/29'。"""
+    if not text:
+        return None
+    parts = text.split()
+    if len(parts) >= 3 and parts[1].endswith("/"):
+        return f"{parts[0]} {parts[1]}{parts[2]}"
+    return " ".join(parts[:3])
+
+
+def _cpc(c: dict) -> str | None:
+    pieces = [_s(c.get(k)) for k in ("section", "class", "subclass", "main-group")]
+    sub = _s(c.get("subgroup"))
+    if not all(pieces):
+        return None
+    return "".join(pieces) + (f"/{sub}" if sub else "")
+
+
+def _priority(node: Any) -> list[str]:
+    out = []
+    for p in _as_list((node or {}).get("priority-claim")):
+        d = _docdb(p.get("document-id"))
+        label = " ".join(x for x in (_s(d.get("country")), _s(d.get("doc-number")), _s(d.get("date"))) if x)
+        if label:
+            out.append(label)
+    return out
+
+
+def _citations(node: Any) -> list[dict]:
+    out = []
+    for c in _as_list((node or {}).get("citation")):
+        pat = c.get("patcit")
+        if pat:
+            d = _docdb(pat.get("document-id"))
+            item = {
+                "number": _doc_number(pat.get("document-id")),
+                "date": _s(d.get("date")),
+                "applicant": _s(d.get("name")),
+            }
+        else:
+            npl = c.get("nplcit") or {}
+            item = {"npl": _s(npl.get("text"))}
+        item.update({
+            "category": _s(c.get("category")),
+            "cited_by": c.get("@cited-by"),
+            "phase": c.get("@cited-phase"),
+            "claims": _s(c.get("rel-claims")),
+        })
+        out.append({k: v for k, v in item.items() if v})
+    return out
+
+
+def _lang_texts(node: Any) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for t in _as_list(node):
+        lang = t.get("@lang") or "und"
+        if "p" in t:
+            text = "\n".join(x for x in (_s(p) for p in _as_list(t.get("p"))) if x)
+        else:
+            text = _s(t) or ""
+        if text:
+            out[lang] = text
+    return out
+
+
+def _docs_in(container: Any) -> list[dict]:
+    return _as_list(((container or {}).get("exchange-documents") or {}).get("exchange-document"))
+
+
+def summarize_document(doc: dict) -> dict:
+    """一份 exchange-document → 扁平書目。"""
+    b = doc.get("bibliographic-data") or {}
+    parties = b.get("parties") or {}
+    rec = {
+        "publication": _ref(b.get("publication-reference")),
+        "application": _ref(b.get("application-reference")),
+        "family_id": doc.get("@family-id"),
+        "title": _lang_texts(b.get("invention-title")),
+        "applicants": _names(parties.get("applicants"), "applicant", "applicant-name"),
+        "inventors": _names(parties.get("inventors"), "inventor", "inventor-name"),
+        "priority": _priority(b.get("priority-claims")),
+        "ipc": [x for x in (_ipc(_s(c.get("text"))) for c in _as_list((b.get("classifications-ipcr") or {}).get("classification-ipcr"))) if x],
+        "cpc": list(dict.fromkeys(x for x in (_cpc(c) for c in _as_list((b.get("patent-classifications") or {}).get("patent-classification"))) if x)),
+        "citations": _citations(b.get("references-cited")),
+        "abstract": _lang_texts(doc.get("abstract")),
+    }
+    return {k: v for k, v in rec.items() if v not in (None, "", [], {})}
+
+
+def summarize_biblio(payload: Any) -> list[dict]:
+    """ops_biblio 的回傳 → [書目]；結構不符時回空。"""
+    try:
+        docs = _docs_in(payload["ops:world-patent-data"])
+    except (KeyError, TypeError):
+        return []
+    return [summarize_document(d) for d in docs]
+
+
+def _legal_events(member: dict) -> list[dict]:
+    events = []
+    for e in _as_list(member.get("ops:legal")):
+        details: dict[str, str] = {}
+        for k, v in e.items():
+            if not k.startswith("ops:L") or not isinstance(v, dict):
+                continue
+            if "$" in v:
+                if k == "ops:L007EP":
+                    details["gazette_date"] = _s(v) or ""
+            else:  # L500EP 之類的巢狀明細
+                for k2, v2 in v.items():
+                    if isinstance(v2, dict) and v2.get("@desc"):
+                        details[v2["@desc"]] = _s(v2) or ""
+        rec = {
+            "date": details.pop("gazette_date", None),
+            "code": (e.get("@code") or "").strip(),
+            "desc": e.get("@desc"),
+            "effect": (e.get("@infl") or "").strip() or None,
+            "details": details,
+        }
+        events.append({k: v for k, v in rec.items() if v not in (None, "", {})})
+    return events
+
+
+def summarize_legal(payload: Any) -> dict:
+    """INPADOC 法律狀態 → {members: [{publication, application, events: [...]}]}。"""
+    try:
+        fam = payload["ops:world-patent-data"]["ops:patent-family"]
+    except (KeyError, TypeError):
+        return {}
+    members = []
+    for m in _as_list(fam.get("ops:family-member")):
+        members.append({
+            "family_id": m.get("@family-id"),
+            "publication": _ref(m.get("publication-reference")),
+            "application": _ref(m.get("application-reference")),
+            "events": _legal_events(m),
+        })
+    return {"members": members}
+
+
+def summarize_family(payload: Any) -> dict:
+    """INPADOC 家族 → {total, members: [{publication, application, priority, representative}]}。"""
+    try:
+        fam = payload["ops:world-patent-data"]["ops:patent-family"]
+    except (KeyError, TypeError):
+        return {}
+    members = []
+    for m in _as_list(fam.get("ops:family-member")):
+        app = m.get("application-reference") or {}
+        rec = {
+            "family_id": m.get("@family-id"),
+            "publication": _ref(m.get("publication-reference")),
+            "application": _ref(app),
+            "representative": app.get("@is-representative") == "YES" or None,
+            "priority": _priority(m),
+        }
+        if "ops:legal" in m:
+            rec["events"] = _legal_events(m)
+        members.append({k: v for k, v in rec.items() if v not in (None, "", [], {})})
+    total = fam.get("@total-result-count")
+    return {"total": int(total) if total else len(members), "members": members}

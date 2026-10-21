@@ -1,0 +1,529 @@
+{
+ "ops:world-patent-data": {
+  "@xmlns": {
+   "ops": "http://ops.epo.org",
+   "$": "http://www.epo.org/exchange",
+   "xlink": "http://www.w3.org/1999/xlink"
+  },
+  "ops:patent-family": {
+   "@legal": "true",
+   "@total-result-count": "6",
+   "ops:publication-reference": {
+    "document-id": {
+     "@document-id-type": "epodoc",
+     "doc-number": {
+      "$": "EP1000000"
+     }
+    }
+   },
+   "ops:family-member": [
+    {
+     "@family-id": "19768124",
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "EP"
+        },
+        "doc-number": {
+         "$": "1000000"
+        },
+        "kind": {
+         "$": "A1"
+        },
+        "date": {
+         "$": "20000517"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "EP1000000"
+        },
+        "date": {
+         "$": "20000517"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "17397285",
+      "@is-representative": "YES",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "EP"
+       },
+       "doc-number": {
+        "$": "99203729"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19991108"
+       }
+      }
+     },
+     "priority-claim": {
+      "@sequence": "1",
+      "@kind": "national",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      },
+      "priority-active-indicator": {
+       "$": "YES"
+      }
+     },
+     "ops:legal": [
+      {
+       "@code": "17Q ",
+       "@desc": "FIRST EXAMINATION REPORT DESPATCHED",
+       "@infl": "+",
+       "@dateMigr": "00010101",
+       "ops:pre": {
+        "$": "EP    99203729A  2002-06-0517Q +FIRST EXAMINATION REPORT DESPATCHED Effective DATE 20020423",
+        "@line": "00001"
+       },
+       "ops:L001EP": {
+        "$": "EP",
+        "@desc": "Country Code"
+       },
+       "ops:L002EP": {
+        "$": "F",
+        "@desc": "Filing / Published Document"
+       },
+       "ops:L003EP": {
+        "$": "99203729",
+        "@desc": "Document Number"
+       },
+       "ops:L004EP": {
+        "$": "A",
+        "@desc": "Kind Code"
+       },
+       "ops:L005EP": {
+        "$": "PI",
+        "@desc": "IPR Type"
+       },
+       "ops:L007EP": {
+        "$": "2002-06-05",
+        "@desc": "Gazette DATE"
+       },
+       "ops:L008EP": {
+        "$": "17Q",
+        "@desc": "Legal Event Code 1"
+       },
+       "ops:L018EP": {
+        "$": "2003-01-01",
+        "@desc": "DATE last exchanged"
+       },
+       "ops:L019EP": {
+        "$": "2003-01-31",
+        "@desc": "DATE first created"
+       },
+       "ops:L500EP": {
+        "ops:L525EP": {
+         "$": "20020423",
+         "@desc": "Effective DATE"
+        }
+       }
+      },
+      {
+       "@code": "AK  ",
+       "@desc": "DESIGNATED CONTRACTING STATES",
+       "@infl": "+",
+       "@dateMigr": "00010101",
+       "ops:pre": {
+        "$": "EP    99203729A  2003-02-12AK  +DESIGNATED CONTRACTING STATES Designated State(s) AT BE CH CY DE DK ES FI FR GB GR IE IT LI LU MC NL PT SE",
+        "@line": "00001"
+       },
+       "ops:L001EP": {
+        "$": "EP",
+        "@desc": "Country Code"
+       },
+       "ops:L002EP": {
+        "$": "F",
+        "@desc": "Filing / Published Document"
+       },
+       "ops:L003EP": {
+        "$": "99203729",
+        "@desc": "Document Number"
+       },
+       "ops:L004EP": {
+        "$": "A",
+        "@desc": "Kind Code"
+       },
+       "ops:L005EP": {
+        "$": "PI",
+        "@desc": "IPR Type"
+       },
+       "ops:L007EP": {
+        "$": "2003-02-12",
+        "@desc": "Gazette DATE"
+       },
+       "ops:L008EP": {
+        "$": "AK",
+        "@desc": "Legal Event Code 1"
+       },
+       "ops:L018EP": {
+        "$": "0001-01-01",
+        "@desc": "DATE last exchanged"
+       },
+       "ops:L019EP": {
+        "$": "2003-02-20",
+        "@desc": "DATE first created"
+       },
+       "ops:L500EP": {
+        "ops:L507EP": {
+         "$": "AT BE CH CY DE DK ES FI FR GB GR IE IT LI LU MC NL PT SE",
+         "@desc": "Designated State(s)"
+        }
+       }
+      },
+      {
+       "@code": "REG ",
+       "@desc": "REFERENCE TO A NATIONAL CODE",
+       "@infl": " ",
+       "@dateMigr": "00010101",
+       "ops:pre": [
+        {
+         "$": "EP    99203729A  2003-02-14REG  REFERENCE TO A NATIONAL CODE Ref Country Code CH",
+         "@line": "00001"
+        },
+        {
+         "$": "EP    99203729A  2003-02-14REG  REFERENCE TO A NATIONAL CODE Ref Legal Event Code EP",
+         "@line": "00002"
+        }
+       ],
+       "ops:L001EP": {
+        "$": "EP",
+        "@desc": "Country Code"
+       },
+       "ops:L002EP": {
+        "$": "F",
+        "@desc": "Filing / Published Document"
+       },
+       "ops:L003EP": {
+        "$": "99203729",
+        "@desc": "Document Number"
+       },
+       "ops:L004EP": {
+        "$": "A",
+        "@desc": "Kind Code"
+       },
+       "ops:L005EP": {
+        "$": "PI",
+        "@desc": "IPR Type"
+       },
+       "ops:L007EP": {
+        "$": "2003-02-14",
+        "@desc": "Gazette DATE"
+       },
+       "ops:L008EP": {
+        "$": "REG",
+        "@desc": "Legal Event Code 1"
+       },
+       "ops:L018EP": {
+        "$": "2003-02-27",
+        "@desc": "DATE last exchanged"
+       },
+       "ops:L019EP": {
+        "$": "2003-02-25",
+        "@desc": "DATE first created"
+       },
+       "ops:L500EP": {
+        "ops:L501EP": {
+         "$": "CH",
+         "@desc": "Ref Country Code"
+        },
+        "ops:L502EP": {
+         "$": "EP",
+         "@desc": "Ref Legal Event Code",
+         "@descData": "EUROPEAN PATENT TAKES EFFECT AS A NATIONAL PATENT IN CH/LI",
+         "@infl": "+"
+        }
+       }
+      },
+      {
+       "@code": "REF ",
+       "@desc": "CORRESPONDS TO:",
+       "@infl": " ",
+       "@dateMigr": "00010101",
+       "ops:pre": [
+        {
+         "$": "EP    99203729A  2003-03-20REF  CORRESPONDS TO: Ref Document Number 69905327",
+         "@line": "00001"
+        },
+        {
+         "$": "EP    99203729A  2003-03-20REF  CORRESPONDS TO: Country of Ref Document DE",
+         "@line": "00002"
+        },
+        {
+         "$": "EP    99203729A  2003-03-20REF  CORRESPONDS TO: DATE OF REF DOCUMENT 20030320",
+         "@line": "00003"
+        },
+        {
+         "$": "EP    99203729A  2003-03-20REF  CORRESPONDS TO: Kind Code of Ref Document P",
+         "@line": "00004"
+        }
+       ],
+       "ops:L001EP": {
+        "$": "EP",
+        "@desc": "Country Code"
+       },
+       "ops:L002EP": {
+        "$": "F",
+        "@desc": "Filing / Published Document"
+       },
+       "ops:L003EP": {
+        "$": "99203729",
+        "@desc": "Document Number"
+       },
+       "ops:L004EP": {
+        "$": "A",
+        "@desc": "Kind Code"
+       },
+       "ops:L005EP": {
+        "$": "PI",
+        "@desc": "IPR Type"
+       },
+       "ops:L007EP": {
+        "$": "2003-03-20",
+        "@desc": "Gazette DATE"
+       },
+       "ops:L008EP": {
+        "$": "REF",
+        "@desc": "Legal Event Code 1"
+       },
+       "ops:L018EP": {
+        "$": "2003-03-20",
+        "@desc": "DATE last exchanged"
+       },
+       "ops:L019EP": {
+        "$": "2003-03-20",
+        "@desc": "DATE first created"
+       },
+       "ops:L500EP": {
+        "ops:L503EP": {
+         "$": "69905327",
+         "@desc": "Ref Document Number"
+        },
+        "ops:L504EP": {
+         "$": "DE",
+         "@desc": "Country of Ref Document"
+        },
+        "ops:L505EP": {
+         "$": "20030320",
+         "@desc": "DATE OF REF DOCUMENT"
+        },
+        "ops:L506EP": {
+         "$": "P",
+         "@desc": "Kind Code of Ref Document"
+        }
+       }
+      },
+      {
+       "@code": "AK  ",
+       "@desc": "DESIGNATED CONTRACTING STATES",
+       "@infl": "+",
+       "@dateMigr": "00010101",
+       "ops:pre": [
+        {
+         "$": "EP    99203729A  2000-05-17AK  +DESIGNATED CONTRACTING STATES Kind Code of Ref Document A1",
+         "@line": "00001"
+        },
+        {
+         "$": "EP    99203729A  2000-05-17AK  +DESIGNATED CONTRACTING STATES Designated State(s) AT BE CH CY DE DK ES FI FR GB GR IE IT LI LU MC NL PT SE",
+         "@line": "00002"
+        }
+       ],
+       "ops:L001EP": {
+        "$": "EP",
+        "@desc": "Country Code"
+       },
+       "ops:L002EP": {
+        "$": "F",
+        "@desc": "Filing / Published Document"
+       },
+       "ops:L003EP": {
+        "$": "99203729",
+        "@desc": "Document Number"
+       },
+       "ops:L004EP": {
+        "$": "A",
+        "@desc": "Kind Code"
+       },
+       "ops:L005EP": {
+        "$": "PI",
+        "@desc": "IPR Type"
+       },
+       "ops:L007EP": {
+        "$": "2000-05-17",
+        "@desc": "Gazette DATE"
+       },
+       "ops:L008EP": {
+        "$": "AK",
+        "@desc": "Legal Event Code 1"
+       },
+       "ops:L018EP": {
+        "$": "2003-01-01",
+        "@desc": "DATE last exchanged"
+       },
+       "ops:L019EP": {
+        "$": "2003-05-28",
+        "@desc": "DATE first created"
+       },
+       "ops:L500EP": {
+        "ops:L506EP": {
+         "$": "A1",
+         "@desc": "Kind Code of Ref Document"
+        },
+        "ops:L507EP": {
+         "$": "AT BE CH CY DE DK ES FI FR GB GR IE IT LI LU MC NL PT SE",
+         "@desc": "Designated State(s)"
+        }
+       }
+      },
+      {
+       "@code": "AX  ",
+       "@desc": "REQUEST FOR EXTENSION OF THE EUROPEAN PATENT",
+       "@infl": "+",
+       "@dateMigr": "00010101",
+       "ops:pre": {
+        "$": "EP    99203729A  2000-05-17AX  +REQUEST FOR EXTENSION OF THE EUROPEAN PATENT Free Format Text AL;LT;LV;MK;RO;SI",
+        "@line": "00001"
+       },
+       "ops:L001EP": {
+        "$": "EP",
+        "@desc": "Country Code"
+       },
+       "ops:L002EP": {
+        "$": "F",
+        "@desc": "Filing / Published Document"
+       },
+       "ops:L003EP": {
+        "$": "99203729",
+        "@desc": "Document Number"
+       },
+       "ops:L004EP": {
+        "$": "A",
+        "@desc": "Kind Code"
+       },
+       "ops:L005EP": {
+        "$": "PI",
+        "@desc": "IPR Type"
+       },
+       "ops:L007EP": {
+        "$": "2000-05-17",
+        "@desc": "Gazette DATE"
+       },
+       "ops:L008EP": {
+        "$": "AX",
+        "@desc": "Legal Event Code 1"
+       },
+       "ops:L018EP": {
+        "$": "2003-01-01",
+        "@desc": "DATE last exchanged"
+       },
+       "ops:L019EP": {
+        "$": "2003-05-28",
+        "@desc": "DATE first created"
+       },
+       "ops:L500EP": {
+        "ops:L510EP": {
+         "$": "AL;LT;LV;MK;RO;SI",
+         "@desc": "Free Format Text"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "@family-id": "19768124",
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "EP"
+        },
+        "doc-number": {
+         "$": "1000000"
+        },
+        "kind": {
+         "$": "B1"
+        },
+        "date": {
+         "$": "20030212"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "EP1000000"
+        },
+        "date": {
+         "$": "20030212"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "17397285",
+      "@is-representative": "YES",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "EP"
+       },
+       "doc-number": {
+        "$": "99203729"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19991108"
+       }
+      }
+     },
+     "priority-claim": {
+      "@sequence": "1",
+      "@kind": "national",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      },
+      "priority-active-indicator": {
+       "$": "YES"
+      }
+     }
+    }
+   ]
+  }
+ }
+}

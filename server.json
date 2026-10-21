@@ -3,7 +3,7 @@
   "name": "io.github.aa0101181514/tw-patent-mcp",
   "title": "Taiwan Patent MCP",
   "description": "Patent search via Taiwan IPO GPSS and EPO OPS: legal status, families, full text, PDFs",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "websiteUrl": "https://dr-legal.com.tw",
   "repository": {
     "url": "https://github.com/aa0101181514/tw-patent-mcp",
@@ -13,7 +13,7 @@
     {
       "registryType": "pypi",
       "identifier": "tw-patent-mcp",
-      "version": "0.1.1",
+      "version": "0.2.0",
       "runtimeHint": "uvx",
       "transport": {
         "type": "stdio"

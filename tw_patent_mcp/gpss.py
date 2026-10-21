@@ -151,6 +151,15 @@ def _list(node: Any, key: str) -> list[dict]:
     return list(items)
 
 
+def _text(value: Any) -> str:
+    """GPSS 由 XML 轉 JSON：單一段落是字串、多段是陣列。兩者都接。"""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, list):
+        return "\n".join(v for v in value if isinstance(v, str))
+    return ""
+
+
 def _names(node: Any, key: str) -> list[str]:
     out = []
     for item in _list(node, key):
@@ -218,10 +227,10 @@ def parse_json(payload: dict) -> dict:
             "ipc": _values(pc.get("classifications-ipc"), "ipc"),
             "cpc": _values(pc.get("classifications-cpc"), "cpc"),
             "loc": _values(pc.get("classifications-loc"), "loc"),
-            "abstract": "\n".join(p for p in (abstract.get("p") or []) if isinstance(p, str)),
+            "abstract": _text(abstract.get("p")),
             "citations": _values(pc.get("references-cited"), "citation"),
             "claims": [
-                {"num": c.get("@num"), "text": c.get("claim-text")} for c in _list(claims, "claim")
+                {"num": c.get("@num"), "text": _text(c.get("claim-text"))} for c in _list(claims, "claim")
             ],
         }
         records.append({k: v for k, v in rec.items() if v not in (None, "", [], {})})
@@ -256,7 +265,7 @@ class GPSSClient:
         if self.dry_run:
             return {"dry_run": True, "url": url.replace(self.user_code, "***")}
         self.check_lock()
-        with httpx.Client(timeout=self.timeout, headers={"User-Agent": "patent-mcp/0.1"}) as client:
+        with httpx.Client(timeout=self.timeout, headers={"User-Agent": config.user_agent()}) as client:
             resp = client.get(url)
         if resp.status_code != 200:
             raise GPSSError(f"HTTP {resp.status_code}（新驗證碼隔日才生效，期間會回 500）")

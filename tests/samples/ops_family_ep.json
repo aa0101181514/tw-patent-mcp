@@ -1,0 +1,451 @@
+{
+ "ops:world-patent-data": {
+  "@xmlns": {
+   "ops": "http://ops.epo.org",
+   "$": "http://www.epo.org/exchange",
+   "xlink": "http://www.w3.org/1999/xlink"
+  },
+  "ops:patent-family": {
+   "@legal": "false",
+   "@total-result-count": "6",
+   "ops:publication-reference": {
+    "document-id": {
+     "@document-id-type": "epodoc",
+     "doc-number": {
+      "$": "EP1000000"
+     }
+    }
+   },
+   "ops:family-member": [
+    {
+     "@family-id": "19768124",
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "EP"
+        },
+        "doc-number": {
+         "$": "1000000"
+        },
+        "kind": {
+         "$": "A1"
+        },
+        "date": {
+         "$": "20000517"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "EP1000000"
+        },
+        "date": {
+         "$": "20000517"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "17397285",
+      "@is-representative": "YES",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "EP"
+       },
+       "doc-number": {
+        "$": "99203729"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19991108"
+       }
+      }
+     },
+     "priority-claim": {
+      "@sequence": "1",
+      "@kind": "national",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      },
+      "priority-active-indicator": {
+       "$": "YES"
+      }
+     }
+    },
+    {
+     "@family-id": "19768124",
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "EP"
+        },
+        "doc-number": {
+         "$": "1000000"
+        },
+        "kind": {
+         "$": "B1"
+        },
+        "date": {
+         "$": "20030212"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "EP1000000"
+        },
+        "date": {
+         "$": "20030212"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "17397285",
+      "@is-representative": "YES",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "EP"
+       },
+       "doc-number": {
+        "$": "99203729"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19991108"
+       }
+      }
+     },
+     "priority-claim": {
+      "@sequence": "1",
+      "@kind": "national",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      },
+      "priority-active-indicator": {
+       "$": "YES"
+      }
+     }
+    },
+    {
+     "@family-id": "19768124",
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "AT"
+        },
+        "doc-number": {
+         "$": "E232441"
+        },
+        "kind": {
+         "$": "T1"
+        },
+        "date": {
+         "$": "20030215"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "ATE232441T"
+        },
+        "date": {
+         "$": "20030215"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "1370469",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "AT"
+       },
+       "doc-number": {
+        "$": "99203729"
+       },
+       "kind": {
+        "$": "T"
+       },
+       "date": {
+        "$": "19991108"
+       }
+      }
+     },
+     "priority-claim": {
+      "@sequence": "1",
+      "@kind": "national",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      },
+      "priority-active-indicator": {
+       "$": "YES"
+      }
+     }
+    },
+    {
+     "@family-id": "19768124",
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "DE"
+        },
+        "doc-number": {
+         "$": "69905327"
+        },
+        "kind": {
+         "$": "D1"
+        },
+        "date": {
+         "$": "20030320"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "DE69905327D1"
+        },
+        "date": {
+         "$": "20030320"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "14768233",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "DE"
+       },
+       "doc-number": {
+        "$": "69905327"
+       },
+       "kind": {
+        "$": "T"
+       },
+       "date": {
+        "$": "19991108"
+       }
+      }
+     },
+     "priority-claim": {
+      "@sequence": "1",
+      "@kind": "national",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      },
+      "priority-active-indicator": {
+       "$": "YES"
+      }
+     }
+    },
+    {
+     "@family-id": "19768124",
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "NL"
+        },
+        "doc-number": {
+         "$": "1010536"
+        },
+        "kind": {
+         "$": "C2"
+        },
+        "date": {
+         "$": "20000515"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "NL1010536C"
+        },
+        "date": {
+         "$": "20000515"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "41488391",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      }
+     },
+     "priority-claim": {
+      "@sequence": "1",
+      "@kind": "national",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      },
+      "priority-active-indicator": {
+       "$": "YES"
+      }
+     }
+    },
+    {
+     "@family-id": "19768124",
+     "publication-reference": {
+      "document-id": [
+       {
+        "@document-id-type": "docdb",
+        "country": {
+         "$": "US"
+        },
+        "doc-number": {
+         "$": "6093011"
+        },
+        "kind": {
+         "$": "A"
+        },
+        "date": {
+         "$": "20000725"
+        }
+       },
+       {
+        "@document-id-type": "epodoc",
+        "doc-number": {
+         "$": "US6093011"
+        },
+        "date": {
+         "$": "20000725"
+        }
+       }
+      ]
+     },
+     "application-reference": {
+      "@doc-id": "48654472",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "US"
+       },
+       "doc-number": {
+        "$": "20685698"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981208"
+       }
+      }
+     },
+     "priority-claim": {
+      "@sequence": "1",
+      "@kind": "national",
+      "document-id": {
+       "@document-id-type": "docdb",
+       "country": {
+        "$": "NL"
+       },
+       "doc-number": {
+        "$": "1010536"
+       },
+       "kind": {
+        "$": "A"
+       },
+       "date": {
+        "$": "19981112"
+       }
+      },
+      "priority-active-indicator": {
+       "$": "YES"
+      }
+     }
+    }
+   ]
+  }
+ }
+}

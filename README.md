@@ -74,10 +74,10 @@ Claude Desktop 的 `claude_desktop_config.json`：
 | `gpss_search` | GPSS | 跨 23 個資料庫檢索書目、摘要與請求項 |
 | `gpss_get` | GPSS | 以公開公告號或申請號取得單筆資料 |
 | `gpss_build_url` | GPSS | 只組出請求網址，用來檢查檢索條件 |
-| `ops_search` | EPO OPS | CQL 全球書目檢索 |
-| `ops_biblio` | EPO OPS | 書目資料，含分類、申請人、引證 |
-| `ops_legal_status` | EPO OPS | INPADOC 法律狀態 |
-| `ops_family` | EPO OPS | INPADOC 專利家族 |
+| `ops_search` | EPO OPS | CQL 全球書目檢索，回傳總筆數與命中清單 |
+| `ops_biblio` | EPO OPS | 書目資料：標題、申請人、發明人、優先權、IPC/CPC、引證、摘要 |
+| `ops_legal_status` | EPO OPS | INPADOC 法律狀態，依家族成員列事件 |
+| `ops_family` | EPO OPS | INPADOC 專利家族成員清單 |
 | `ops_fulltext` | EPO OPS | 請求項、說明書、摘要全文，限 EP、WO 與部分歐洲國家 |
 | `ops_register` | EPO OPS | 歐洲專利註冊簿 |
 | `ops_images` | EPO OPS | 列出公報原件、圖式、首頁等影像文件與頁數 |
@@ -85,11 +85,13 @@ Claude Desktop 的 `claude_desktop_config.json`：
 
 專利號照公報寫法輸入即可，例如 `TW201644272A`、`TWI700000B`、`TWM600000U`、`US10000000B2`、`EP1000000`。
 
+`ops_search`、`ops_biblio`、`ops_legal_status`、`ops_family` 預設回傳壓平後的摘要，體積約為原始回應的一成到兩成；需要完整欄位時加 `raw=true`。
+
 ## 使用限制與防護
 
 - GPSS 依上班、下班時段設有輸出筆數上限，超過會回傳提示文字。
 - GPSS 回應驗證碼無效、過期或 IP 被擋時，本套件會寫入鎖檔並停止後續呼叫，避免持續以無效驗證碼查詢而遭封鎖。確認驗證碼可用後，刪除 `~/.tw-patent-mcp/gpss_lock` 即可恢復。新核發的驗證碼可能要隔日才生效。
-- EPO OPS 免費額度為每週 4GB，並有每分鐘呼叫次數限制。本套件每次呼叫間隔至少 6 秒。PDF 每頁計一次呼叫，下載前請先用 `ops_images` 確認頁數。
+- EPO OPS 免費額度為每週 4GB，並有每分鐘呼叫次數限制。本套件依 OPS 每次回應的節流燈號自動調整呼叫間隔，尚未取得燈號前每次間隔 6 秒。PDF 每頁計一次呼叫，下載前請先用 `ops_images` 確認頁數。
 
 ## 資料來源與使用責任
 

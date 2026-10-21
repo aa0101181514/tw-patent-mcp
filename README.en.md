@@ -74,10 +74,10 @@ To keep credentials out of client config, put them in `~/.config/tw-patent-mcp/.
 | `gpss_search` | GPSS | Search bibliographic data, abstracts and claims across 23 databases |
 | `gpss_get` | GPSS | Fetch one record by publication or application number |
 | `gpss_build_url` | GPSS | Build the request URL only, to check query syntax |
-| `ops_search` | EPO OPS | Worldwide CQL search |
-| `ops_biblio` | EPO OPS | Bibliographic data with classifications, applicants and citations |
-| `ops_legal_status` | EPO OPS | INPADOC legal status |
-| `ops_family` | EPO OPS | INPADOC patent family |
+| `ops_search` | EPO OPS | Worldwide CQL search with total count and hit list |
+| `ops_biblio` | EPO OPS | Bibliographic data: titles, applicants, inventors, priorities, IPC/CPC, citations, abstract |
+| `ops_legal_status` | EPO OPS | INPADOC legal status, events per family member |
+| `ops_family` | EPO OPS | INPADOC patent family members |
 | `ops_fulltext` | EPO OPS | Claims, description and abstract for EP, WO and some European countries |
 | `ops_register` | EPO OPS | European Patent Register |
 | `ops_images` | EPO OPS | List full documents, drawings and first pages with page counts |
@@ -85,11 +85,13 @@ To keep credentials out of client config, put them in `~/.config/tw-patent-mcp/.
 
 Enter patent numbers as printed on the publication, for example `TW201644272A`, `TWI700000B`, `TWM600000U`, `US10000000B2` or `EP1000000`.
 
+`ops_search`, `ops_biblio`, `ops_legal_status` and `ops_family` return a flattened summary by default, roughly one tenth to one fifth of the raw response. Pass `raw=true` for the complete OPS JSON.
+
 ## Limits and safeguards
 
 - GPSS caps output per time slot, with different limits in and outside office hours.
 - If GPSS reports an invalid or expired code or a blocked IP, the package writes a lock file and stops further calls, so a bad code is not retried into an IP ban. Delete `~/.tw-patent-mcp/gpss_lock` once the code works. A newly issued code may only become active the next day.
-- EPO OPS gives 4GB per week free and limits calls per minute. The package waits at least 6 seconds between calls. Each PDF page is one call, so check page counts with `ops_images` first.
+- EPO OPS gives 4GB per week free and limits calls per minute. The package spaces calls according to the throttling header OPS returns with each response, and waits 6 seconds between calls until that header has been seen. Each PDF page is one call, so check page counts with `ops_images` first.
 
 ## Data sources and responsibility
 
